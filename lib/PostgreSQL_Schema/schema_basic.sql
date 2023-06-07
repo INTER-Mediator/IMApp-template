@@ -15,14 +15,14 @@ $ psql -f schema_basic.sql -h localhost imapp_account
 $ psql -f schema_views.sql -h localhost imapp_account
 $ psql -f schema_initial_data.sql -h localhost imapp_account
 */
-DROP USER IF EXISTS web;
+DROP USER IF EXISTS im_db_user;
 CREATE USER im_db_user PASSWORD 'iex2TahseiLu4Iu5Quoow7sh';
-DROP SCHEMA IF EXISTS imapp_account CASCADE;
+DROP SCHEMA IF EXISTS imapp CASCADE;
 CREATE SCHEMA imapp;
 SET search_path TO imapp,public;
-ALTER USER im_db_user SET imapp TO imapp_account,public;
+ALTER USER im_db_user SET search_path TO imapp,public;
 
-GRANT ALL PRIVILEGES ON SCHEMA imapp TO web;
+GRANT ALL PRIVILEGES ON SCHEMA imapp TO im_db_user;
 
 CREATE TABLE person
 (
@@ -39,7 +39,8 @@ CREATE TABLE person
     mobile      TEXT,
     mail        TEXT
 );
-GRANT ALL PRIVILEGES ON person TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.person TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.person_person_id_seq TO im_db_user;
 
 CREATE INDEX person_family_name
     ON person (family_name);
@@ -73,7 +74,8 @@ CREATE TABLE registeredcontext
     conditions   TEXT,
     registereddt TIMESTAMP
 );
-GRANT ALL PRIVILEGES ON registeredcontext TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.registeredcontext TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.registeredcontext_id_seq TO im_db_user;
 
 CREATE TABLE registeredpks
 (
@@ -82,7 +84,7 @@ CREATE TABLE registeredpks
     PRIMARY KEY (context_id, pk),
     FOREIGN KEY (context_id) REFERENCES registeredcontext (id) ON DELETE CASCADE
 );
-GRANT ALL PRIVILEGES ON registeredpks TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.registeredpks TO im_db_user;
 
 CREATE INDEX registeredpks_context_id
     ON registeredpks (context_id);
@@ -99,7 +101,8 @@ CREATE TABLE authuser
     realname     VARCHAR(20),
     limitdt      TIMESTAMP
 );
-GRANT ALL PRIVILEGES ON authuser TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.authuser TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.authuser_id_seq TO im_db_user;
 
 CREATE INDEX authuser_username
     ON authuser (username);
@@ -113,7 +116,8 @@ CREATE TABLE authgroup
     id        SERIAL PRIMARY KEY,
     groupname TEXT
 );
-GRANT ALL PRIVILEGES ON authgroup TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.authgroup TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.authgroup_id_seq TO im_db_user;
 
 CREATE TABLE authcor
 (
@@ -123,7 +127,8 @@ CREATE TABLE authcor
     dest_group_id INTEGER,
     privname      TEXT
 );
-GRANT ALL PRIVILEGES ON authcor TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.authcor TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.authcor_id_seq TO im_db_user;
 
 CREATE INDEX authcor_user_id
     ON authcor (user_id);
@@ -140,7 +145,8 @@ CREATE TABLE issuedhash
     hash       TEXT,
     expired    TIMESTAMP
 );
-GRANT ALL PRIVILEGES ON issuedhash TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.issuedhash TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.issuedhash_id_seq TO im_db_user;
 
 CREATE INDEX issuedhash_user_id
     ON issuedhash (user_id);
@@ -173,4 +179,5 @@ CREATE TABLE operationlog
     edit_field    VARCHAR(20),
     edit_value    TEXT
 );
-GRANT ALL PRIVILEGES ON operationlog TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.operationlog TO im_db_user;
+GRANT ALL PRIVILEGES ON imapp.operationlog_id_seq TO im_db_user;

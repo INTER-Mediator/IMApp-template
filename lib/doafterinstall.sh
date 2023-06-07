@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DB_ENGINE="mysql" # or postgresql
+DB_ENGINE="mysql" # mysql or postgresql
 DB_NAME="imapp_db"
 
 myDir=$(
@@ -29,9 +29,9 @@ if [ "${choice}" = "YES" ]; then
   elif [[ "${DB_ENGINE}" =~ "postgresql" ]]; then
     schemaDir="${appRootDir}/lib/PostgreSQL_Schema"
     cd "${schemaDir}"
-    ${sudoReq} psql -c 'create database imapp;' -h localhost postgres
-    ${sudoReq} psql -f schema_basic.sql -h localhost imapp
-    ${sudoReq} psql -f schema_views.sql -h localhost imapp
-    ${sudoReq} psql -f schema_initial_data.sql -h localhost imapp
+    ${sudoReq} psql --quiet -c "create database ${DB_NAME};" -h localhost postgres
+    ${sudoReq} psql --quiet -f schema_basic.sql -h localhost ${DB_NAME}
+    ${sudoReq} psql --quiet -f schema_views.sql -h localhost ${DB_NAME}
+    ${sudoReq} psql --quiet -f schema_initial_data.sql -h localhost ${DB_NAME}
   fi
 fi

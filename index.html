@@ -15,14 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>INTER-Mediator Account</title>
     <!-- Loading JQuery -->
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script> <!-- Don't use 'slim' -->
+    <script src="./vendor/inter-mediator/inter-mediator/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Don't use 'slim' -->
     <!-- Loading Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <!-- Loading JQuery UI FileUpload -->
-    <link rel="stylesheet" href="../../node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-    <script src="../node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
-    <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+    <link rel="stylesheet"
+          href="/vendor/inter-mediator/inter-mediator/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
+    <script src="./vendor/inter-mediator/inter-mediator/node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
+    <script src="./vendor/inter-mediator/inter-mediator/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
     <!-- Loading INTER-Mediator -->
     <script src="index_contexts.php"></script>
     <link rel="stylesheet" href="./lib/css/default.css">
@@ -70,93 +72,104 @@
             </div>
         </div>
     </nav>
-    <h3>List</h3>
+    <h3>Person List</h3>
     <div id="IM_NAVIGATOR"></div>
     <div class="sticky-header-table">
-        <table style="width:100%">
+        <table style="width: 100%">
             <thead>
             <tr>
                 <th>
-                    <select data-im="_@limitnumber:account_list">
+                    <select data-im="_@limitnumber:person-list">
                         <option value="10">10</option>
-                        <option value="50">50</option>
+                        <option value="50" selected>50</option>
                         <option value="200">200</option>
                         <option value="5000">5000</option>
                     </select>
                 </th>
-                <th>
-                    <input type="text" size="5" placeholder="No検索"
-                           data-im="_@condition:account_list:account_id,parent_account_id:=">
+                <th colspan="10">
+                    <input type="text" size="30" placeholder="名前検索"
+                           data-im="_@condition:person-list:family_name,given_name:*match*">
                 </th>
             </tr>
             <tr>
                 <th></th>
-                <th>No<br>親No</th>
-                <th>日付
+                <th>Name
                     <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:asc">▲</span>
                     <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:desc">▼</span>
                 </th>
-                <th>区分</th>
-                <th>仕訳
-                    <span style="cursor: pointer" data-im="_@addorder:account_list:pattern_name:asc">▲</span>
-                    <span style="cursor: pointer" data-im="_@addorder:account_list:pattern_name:desc">▼</span>
-                    <br>借方／貸方科目
-                </th>
-                <th>会社名 <span style="cursor: pointer" data-im="_@addorder:account_list:company:asc">▲</span>
-                    <span style="cursor: pointer" data-im="_@addorder:account_list:company:desc">▼</span>
-                    <br>説明
-                </th>
-                <th>合計金額<br>小項目合計</th>
-                <th>税抜金額<br>税額</th>
-                <th>
-                    <button class="btn btn-success" onclick="showPanel(event.target)">各種機能</button>
-                </th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr style="border-bottom: 1px solid #808080" data-im="account_list@checkStyle@style.backgroundColor">
+            <tr style="border-bottom: 1px solid #808080">
+                <td></td>
                 <td>
-                    <button onclick="moveDetailPage($)" data-im="account_list@account_id@$onclick"
-                            class="btn btn-primary">
-                        詳細
-                    </button>
-                </td>
-                <td>
-                    <span data-im="account_list@account_id"></span><br>
-                    <span data-im="account_list@parent_account_id" style="color: #c75315"></span>
-                </td>
-                <td data-im="account_list@issued_date"></td>
-                <td>
-                    <span data-im="account_list@kind_str"></span><br>
-                    <span data-im="account_list@attached" style="color: #c75315"></span>
+                    <span data-im="person-list@family_name"></span>
+                    <span data-im="person-list@given_name"></span>
                 </td>
                 <td>
-                    <span data-im="account_list@pattern_name" style="font-size: 0.8em"></span><br>
-                    <span data-im="account_list@debit_item_name"></span>／<span
-                        data-im="account_list@credit_item_name"></span>
+                    <span data-im="person-list@tel"></span><br>
+                    <span data-im="person-list@mobile"></span>
                 </td>
                 <td>
-                    <span style="font-size: 0.9em; color: darkgreen" data-im="account_list@company"></span><br>
-                    <span data-im="account_list@description"></span>
+                    <span data-im="person-list@mail"></span>
                 </td>
-                <td style="text-align: right">
-                <span data-im="account_list@item_total" data-im-format="number(0)"
-                      data-im-format-options="useseparator"></span><br>
-                    <span data-im="account_list@alertStyle@style.display">⚠️</span>
-                    <span data-im="account_list@parent_total" data-im-format="number(0)"
-                          data-im-format-options="useseparator" style="color: #c75315"></span>
+                <td>
+                    〒<span data-im="person-list@zip"></span><br>
+                    <span data-im="person-list@prefecture"></span>
+                    <span data-im="person-list@city"></span>
+                    <span data-im="person-list@town"></span>
+                    <span data-im="person-list@address"></span><br>
+                    <span data-im="person-list@place_name"></span>
                 </td>
-                <td style="text-align: right">
-                <span data-im="account_list@net_total" data-im-format="number(0)"
-                      data-im-format-options="useseparator"></span><br>
-                    <span data-im="account_list@tax_total" data-im-format="number(0)"
-                          data-im-format-options="useseparator"></span>
-                </td>
-                <td style="white-space: nowrap"></td>
+                <td style="white-space: nowrap; text-align:right"></td>
             </tr>
             </tbody>
         </table>
     </div>
+    <table style="width:100%">
+        <tbody>
+        <tr>
+            <th>Name</th>
+            <td>
+                <input type="text" size="10" data-im="person-detail@family_name" placeholder="Faily Name">
+                <input type="text" size="10" data-im="person-detail@given_name" placeholder="Given Name">
+            </td>
+        </tr>
+        <tr>
+            <th>Phone(Main)</th>
+            <td>
+                <input type="text" size="20" data-im="person-detail@tel">
+            </td>
+        </tr>
+        <tr>
+            <th>Phone(Mobile)</th>
+            <td>
+                <input type="text" size="20" data-im="person-detail@mobile">
+            </td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>
+                <input type="text" size="20" data-im="person-detail@mail">
+            </td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>
+                〒<input type="text" size="10" data-im="person-detail@zip" placeholder="Postal Code"><br>
+                <input type="text" size="10" data-im="person-detail@prefecture" placeholder="Prefecture">
+                <input type="text" size="10" data-im="person-detail@city" placeholder="City">
+                <input type="text" size="15" data-im="person-detail@town" placeholder="Town">
+                <input type="text" size="14" data-im="person-detail@address" placeholder="Address"><br>
+                <input type="text" size="20" data-im="person-detail@place_name" placeholder="Place Name">
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

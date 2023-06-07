@@ -51,27 +51,27 @@ CREATE TABLE person
 );
 
 CREATE INDEX person_family_name
-    ON person (family_name);
+    ON person (family_name(100));
 CREATE INDEX person_given_name
-    ON person (given_name);
+    ON person (given_name(100));
 CREATE INDEX person_zip
-    ON person (zip);
+    ON person (zip(100));
 CREATE INDEX person_prefecture
-    ON person (prefecture);
+    ON person (prefecture(100));
 CREATE INDEX person_city
-    ON person (city);
+    ON person (city(100));
 CREATE INDEX person_town
-    ON person (town);
+    ON person (town(100));
 CREATE INDEX person_address
-    ON person (address);
+    ON person (address(100));
 CREATE INDEX person_place_name
-    ON person (place_name);
+    ON person (place_name(100));
 CREATE INDEX person_tel
-    ON person (tel);
+    ON person (tel(100));
 CREATE INDEX person_mobile
-    ON person (mobile);
+    ON person (mobile(100));
 CREATE INDEX person_mail
-    ON person (mail);
+    ON person (mail(100));
 
 /* INTER-Mediator managed tables */
 /* Observable */

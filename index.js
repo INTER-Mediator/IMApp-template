@@ -7,7 +7,7 @@
  * Please see the full license for details:
  * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
  */
-INTERMediatorOnPage.doBeforeConstruct = function () {
+INTERMediatorOnPage.doBeforeConstruct = () => {
   INTERMediator.alwaysAddOperationExchange = true;
   INTERMediatorLog.suppressDebugMessageOnPage = true;
   INTERMediatorOnPage.buttonClassCopy = "btn btn-info"
@@ -20,11 +20,19 @@ INTERMediatorOnPage.doBeforeConstruct = function () {
   // INTERMediator.lcConditionsOP3AND = 'AND'
 };
 
-INTERMediatorOnPage.doAfterConstruct = function () {
-  const visiblePanel = document.getElementById("panelcontent")
-  visiblePanel.addEventListener('click', (event) => {
-    event.stopPropagation()
-  })
+INTERMediatorOnPage.doAfterConstruct = () => {
   document.getElementById('container').style.display = 'block'
   stickyHeaderTableAdjust()
 }
+
+INTERMediatorOnPage.naviBeforeMoveToDetail = (masterContext, detailContext) => {
+  stickyHeaderTableVisible(false)
+}
+INTERMediatorOnPage.naviAfterMoveToDetail = (masterContext, detailContext) => {
+}
+INTERMediatorOnPage.navibeforeMoveToMaster = (masterContext, detailContext) => {
+}
+INTERMediatorOnPage.naviAfterMoveToMaster = (masterContext, detailContext) => {
+  stickyHeaderTableVisible(true)
+}
+

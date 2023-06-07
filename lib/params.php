@@ -25,8 +25,8 @@ $dbPassword = 'iex2TahseiLu4Iu5Quoow7sh';
 
 /* PDO awares below:
  */
-$dbDSN = 'mysql:host=127.0.0.1;dbname=imapp_account;charset=utf8mb4';
-//$dbDSN = 'pgsql:host=localhost;port=5432;dbname=imapp_account';
+$dbDSN = 'mysql:host=127.0.0.1;dbname=imapp_db;charset=utf8mb4';
+//$dbDSN = 'pgsql:host=localhost;port=5432;dbname=imapp_db';
 $dbOption = array();
 
 /* Security
