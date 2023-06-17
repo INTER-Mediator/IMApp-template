@@ -74,62 +74,60 @@
     </nav>
     <h3>Person List</h3>
     <div id="IM_NAVIGATOR"></div>
-    <div class="sticky-header-table">
-        <table style="width: 100%">
-            <thead>
-            <tr>
-                <th>
-                    <select data-im="_@limitnumber:person-list">
-                        <option value="10">10</option>
-                        <option value="50" selected>50</option>
-                        <option value="200">200</option>
-                        <option value="5000">5000</option>
-                    </select>
-                </th>
-                <th colspan="10">
-                    <input type="text" size="30" placeholder="名前検索"
-                           data-im="_@condition:person-list:family_name,given_name:*match*">
-                </th>
-            </tr>
-            <tr>
-                <th></th>
-                <th>Name
-                    <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:asc">▲</span>
-                    <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:desc">▼</span>
-                </th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr style="border-bottom: 1px solid #808080">
-                <td></td>
-                <td>
-                    <span data-im="person-list@family_name"></span>
-                    <span data-im="person-list@given_name"></span>
-                </td>
-                <td>
-                    <span data-im="person-list@tel"></span><br>
-                    <span data-im="person-list@mobile"></span>
-                </td>
-                <td>
-                    <span data-im="person-list@mail"></span>
-                </td>
-                <td>
-                    〒<span data-im="person-list@zip"></span><br>
-                    <span data-im="person-list@prefecture"></span>
-                    <span data-im="person-list@city"></span>
-                    <span data-im="person-list@town"></span>
-                    <span data-im="person-list@address"></span><br>
-                    <span data-im="person-list@place_name"></span>
-                </td>
-                <td style="white-space: nowrap; text-align:right"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <table style="width: 100%" class="sticky-header-table">
+        <thead>
+        <tr>
+            <th>
+                <select data-im="_@limitnumber:person-list">
+                    <option value="10">10</option>
+                    <option value="50" selected>50</option>
+                    <option value="200">200</option>
+                    <option value="5000">5000</option>
+                </select>
+            </th>
+            <th colspan="10">
+                <input type="text" size="30" placeholder="名前検索"
+                       data-im="_@condition:person-list:family_name,given_name:*match*">
+            </th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Name
+                <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:asc">▲</span>
+                <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:desc">▼</span>
+            </th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="border-bottom: 1px solid #808080">
+            <td></td>
+            <td>
+                <span data-im="person-list@family_name"></span>
+                <span data-im="person-list@given_name"></span>
+            </td>
+            <td>
+                <span data-im="person-list@tel"></span><br>
+                <span data-im="person-list@mobile"></span>
+            </td>
+            <td>
+                <span data-im="person-list@mail"></span>
+            </td>
+            <td>
+                〒<span data-im="person-list@zip"></span><br>
+                <span data-im="person-list@prefecture"></span>
+                <span data-im="person-list@city"></span>
+                <span data-im="person-list@town"></span>
+                <span data-im="person-list@address"></span><br>
+                <span data-im="person-list@place_name"></span>
+            </td>
+            <td style="white-space: nowrap; text-align:right"></td>
+        </tr>
+        </tbody>
+    </table>
     <table style="width:100%">
         <tbody>
         <tr>
