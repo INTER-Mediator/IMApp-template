@@ -13,161 +13,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>INTER-Mediator Account</title>
-    <!-- Loading JQuery -->
-    <script src="./vendor/inter-mediator/inter-mediator/node_modules/jquery/dist/jquery.min.js"></script>
-    <!-- Don't use 'slim' -->
-    <!-- Loading Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Loading JQuery UI FileUpload -->
-    <link rel="stylesheet"
-          href="/vendor/inter-mediator/inter-mediator/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-    <script src="./vendor/inter-mediator/inter-mediator/node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
-    <script src="./vendor/inter-mediator/inter-mediator/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
-    <!-- Loading INTER-Mediator -->
-    <script src="index_contexts.php"></script>
-    <link rel="stylesheet" href="./lib/css/default.css">
-    <script src="index.js"></script>
-    <!-- Loading Sticky Header Table library -->
-    <link rel="stylesheet" href="./lib/sticky-header-table/styles.css">
-    <script src="./lib/sticky-header-table/processing.js"></script>
+    <title>INTER-Mediator App.</title>
 </head>
 <body>
-<div id="nonsupportmessage">
-    <div style="text-align:center;color:yellow;background-color:black;">
-        This page is going to show for a moment.
-        If you see this permanently, please enable JavaScript and reload.
-        Otherwise it's possible to use any unsupported web browser.
-    </div>
-    <div style="text-align:center;color:yellow;background-color:black;">
-        現在、ページの構成中です。
-        もし、この表示が長時間表示されているなら、JavaScriptを有効にして再度読み込んでください。
-        サポート対象外のWebブラウザーを使っている場合も、これを表示し続けることがあります。
-    </div>
-</div>
-<div id="container" style="display: none">
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">INTER-Mediator App.</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item  active">
-                        <a class="nav-link active" aria-current="page" href="index.html">Top</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                           data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            Settings
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="Accounts/accounts.html">User Management</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <h3>Person List</h3>
-    <div id="IM_NAVIGATOR"></div>
-    <table style="width: 100%" class="sticky-header-table">
-        <thead>
-        <tr>
-            <th>
-                <select data-im="_@limitnumber:person-list">
-                    <option value="10">10</option>
-                    <option value="50" selected>50</option>
-                    <option value="200">200</option>
-                    <option value="5000">5000</option>
-                </select>
-            </th>
-            <th colspan="10">
-                <input type="text" size="30" placeholder="名前検索"
-                       data-im="_@condition:person-list:family_name,given_name:*match*">
-            </th>
-        </tr>
-        <tr>
-            <th></th>
-            <th>Name
-                <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:asc">▲</span>
-                <span style="cursor: pointer" data-im="_@addorder:account_list:issued_date:desc">▼</span>
-            </th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr style="border-bottom: 1px solid #808080">
-            <td></td>
-            <td>
-                <span data-im="person-list@family_name"></span>
-                <span data-im="person-list@given_name"></span>
-            </td>
-            <td>
-                <span data-im="person-list@tel"></span><br>
-                <span data-im="person-list@mobile"></span>
-            </td>
-            <td>
-                <span data-im="person-list@mail"></span>
-            </td>
-            <td>
-                〒<span data-im="person-list@zip"></span><br>
-                <span data-im="person-list@prefecture"></span>
-                <span data-im="person-list@city"></span>
-                <span data-im="person-list@town"></span>
-                <span data-im="person-list@address"></span><br>
-                <span data-im="person-list@place_name"></span>
-            </td>
-            <td style="white-space: nowrap; text-align:right"></td>
-        </tr>
-        </tbody>
-    </table>
-    <table style="width:100%">
-        <tbody>
-        <tr>
-            <th>Name</th>
-            <td>
-                <input type="text" size="10" data-im="person-detail@family_name" placeholder="Faily Name">
-                <input type="text" size="10" data-im="person-detail@given_name" placeholder="Given Name">
-            </td>
-        </tr>
-        <tr>
-            <th>Phone(Main)</th>
-            <td>
-                <input type="text" size="20" data-im="person-detail@tel">
-            </td>
-        </tr>
-        <tr>
-            <th>Phone(Mobile)</th>
-            <td>
-                <input type="text" size="20" data-im="person-detail@mobile">
-            </td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>
-                <input type="text" size="20" data-im="person-detail@mail">
-            </td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td>
-                〒<input type="text" size="10" data-im="person-detail@zip" placeholder="Postal Code"><br>
-                <input type="text" size="10" data-im="person-detail@prefecture" placeholder="Prefecture">
-                <input type="text" size="10" data-im="person-detail@city" placeholder="City">
-                <input type="text" size="15" data-im="person-detail@town" placeholder="Town">
-                <input type="text" size="14" data-im="person-detail@address" placeholder="Address"><br>
-                <input type="text" size="20" data-im="person-detail@place_name" placeholder="Place Name">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<h1>The template repository for INTER-Mediator Application</h1>
+<p>The sample page is <a href="sample_page/">here</a>.</p>
+<h3>Highlight of the sample page.</h3>
+<ul>
+    <li>Simple database (just 1 table) application.</li>
+    <li>List-Detail style navigation.</li>
+    <li>One image file can be attached to a record (you have to care the setting to store images).</li>
+    <li>Authentication required.</li>
+    <li>Bootstrap already integrated, and navigation bar is prepared.</li>
+    <li>The list page has sticky labels on the top of it</li>
+    <li>The Utility Panel can define on the page.</li>
+</ul>
 </body>
 </html>

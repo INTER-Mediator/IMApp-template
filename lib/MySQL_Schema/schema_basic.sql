@@ -47,7 +47,8 @@ CREATE TABLE person
     place_name  TEXT,
     tel         TEXT,
     mobile      TEXT,
-    mail        TEXT
+    mail        TEXT,
+    photo       TEXT
 );
 
 CREATE INDEX person_family_name

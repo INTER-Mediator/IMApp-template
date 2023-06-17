@@ -22,17 +22,6 @@ INTERMediatorOnPage.doBeforeConstruct = () => {
 
 INTERMediatorOnPage.doAfterConstruct = () => {
   document.getElementById('container').style.display = 'block'
-  stickyHeaderTableAdjust()
-}
-
-INTERMediatorOnPage.naviBeforeMoveToDetail = (masterContext, detailContext) => {
-  stickyHeaderTableVisible(false)
-}
-INTERMediatorOnPage.naviAfterMoveToDetail = (masterContext, detailContext) => {
-}
-INTERMediatorOnPage.navibeforeMoveToMaster = (masterContext, detailContext) => {
-}
-INTERMediatorOnPage.naviAfterMoveToMaster = (masterContext, detailContext) => {
-  stickyHeaderTableVisible(true)
+  initializeUtilityPanel()
 }
 

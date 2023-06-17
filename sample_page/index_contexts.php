@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-require_once './vendor/inter-mediator/inter-mediator/INTER-Mediator.php';
+require_once '../vendor/inter-mediator/inter-mediator/INTER-Mediator.php';
 
 IM_Entry(
     [
@@ -37,18 +37,18 @@ IM_Entry(
             'records' => 1,
             'maxrecords' => 1,
             'navi-control' => 'detail',
+            'calculation' => [
+                ['field' => 'photo_style', 'expression' => "if(photo, 'block', 'none')"],
+            ],
+            'authentication' => ['media-handling' => true],
         ],
     ],
     [
+        'media-root-dir' => '/tmp',
         'authentication' => [
 //            'group' => ['admin'],
             'authexpired' => '60000', // Set as seconds.
             'storing' => 'credential',
-
-//            'user-table' => 'imapp.authuser', // Default value
-//            'group-table' => 'imapp.authgroup',
-//            'corresponding-table' => 'imapp.authcor',
-//            'challenge-table' => 'imapp.issuedhash',
         ],
     ],
     ['db-class' => 'PDO',],

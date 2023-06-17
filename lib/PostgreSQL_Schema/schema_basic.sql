@@ -37,7 +37,8 @@ CREATE TABLE person
     place_name  TEXT,
     tel         TEXT,
     mobile      TEXT,
-    mail        TEXT
+    mail        TEXT,
+    photo       TEXT
 );
 GRANT ALL PRIVILEGES ON imapp.person TO im_db_user;
 GRANT ALL PRIVILEGES ON imapp.person_person_id_seq TO im_db_user;
