@@ -27,7 +27,7 @@ if [ "${choice}" = "YES" ]; then
   elif [[ "${DB_ENGINE}" =~ "postgresql" ]]; then
     schemaDir="${appRootDir}/lib/PostgreSQL_Schema"
     cd "${schemaDir}"
-    ${sudoReq} psql -f schema_views.sql -h localhost ${DB_NAME}
     ${sudoReq} psql -f schema_update.sql -h localhost ${DB_NAME}
+    ${sudoReq} psql -f schema_views.sql -h localhost ${DB_NAME}
   fi
 fi
