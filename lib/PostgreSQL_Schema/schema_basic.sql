@@ -15,16 +15,12 @@ $ psql -f schema_basic.sql -h localhost imapp_account
 $ psql -f schema_views.sql -h localhost imapp_account
 $ psql -f schema_initial_data.sql -h localhost imapp_account
 */
-DROP
-USER IF EXISTS im_db_user;
-CREATE
-USER im_db_user PASSWORD 'iex2TahseiLu4Iu5Quoow7sh';
+DROP USER IF EXISTS im_db_user;
+CREATE USER im_db_user PASSWORD 'iex2TahseiLu4Iu5Quoow7sh';
 DROP SCHEMA IF EXISTS imapp CASCADE;
 CREATE SCHEMA imapp;
-SET
-search_path TO imapp,public;
-ALTER
-USER im_db_user SET search_path TO imapp,public;
+SET search_path TO imapp,public;
+ALTER USER im_db_user SET search_path TO imapp,public;
 
 GRANT ALL PRIVILEGES ON SCHEMA
 imapp TO im_db_user;
@@ -104,16 +100,15 @@ CREATE TABLE authuser
     username        TEXT,
     hashedpasswd    TEXT,
     email           TEXT,
-    realname        VARCHAR(20),
+    realname        TEXT,
     limitdt         TIMESTAMP,
-    email           VARCHAR(100),
-    address         VARCHAR(200),
+    address         TEXT,
     birthdate       CHAR(8),
     gender          CHAR(1),
-    sub             VARCHAR(255),
-    initialPassword VARCHAR(30),
+    sub             TEXT,
+    initialPassword TEXT,
     publicKey       TEXT,
-    accessToken     VARCHAR(64),
+    accessToken     TEXT
 );
 GRANT ALL PRIVILEGES ON imapp.authuser TO im_db_user;
 GRANT ALL PRIVILEGES ON imapp.authuser_id_seq TO im_db_user;

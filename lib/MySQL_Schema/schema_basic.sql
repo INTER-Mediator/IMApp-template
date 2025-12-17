@@ -18,20 +18,18 @@ mysql -uroot imapp_db < schema_initial_data.sql
 */
 SET NAMES 'utf8mb4';
 
-DROP USER IF EXISTS 'im_db_user'@'localhost';
-CREATE USER 'im_db_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'iex2TahseiLu4Iu5Quoow7sh';
-######### Moreover add descriptions to the [mysqld] section of any cnf file.
-######### default_authentication_plugin = mysql_native_password
+DROP
+USER IF EXISTS 'im_db_user'@'localhost';
+CREATE
+USER 'im_db_user'@'localhost' IDENTIFIED BY 'iex2TahseiLu4Iu5Quoow7sh';
 
 # Grant to All operations for all objects with web account
-GRANT SELECT, INSERT, DELETE, UPDATE ON TABLE imapp_db.* TO 'im_db_user'@'localhost';
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE imapp_db.* TO 'im_db_user'@'localhost';
 GRANT SHOW VIEW ON TABLE imapp_db.* TO 'im_db_user'@'localhost';
 # For mysqldump, the SHOW VIEW privilege is just required, and use options --single-transaction and --no-tablespaces.
 
 DROP DATABASE IF EXISTS imapp_db;
-CREATE DATABASE imapp_db
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE imapp_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE imapp_db;
 
 CREATE TABLE person
@@ -101,20 +99,19 @@ CREATE INDEX registeredpks_pk
 /* Authentication */
 CREATE TABLE authuser
 (
-    id           INTEGER PRIMARY KEY AUTO_INCREMENT,
-    username     TEXT,
-    hashedpasswd TEXT,
-    email        TEXT,
-    realname     VARCHAR(20),
-    limitdt      DateTime,
-    email           VARCHAR(100),
-    address         VARCHAR(200),
+    id              INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username        TEXT,
+    hashedpasswd    TEXT,
+    email           TEXT,
+    realname        TEXT,
+    limitdt         DateTime,
+    address         TEXT,
     birthdate       CHAR(8),
     gender          CHAR(1),
-    sub             VARCHAR(255),
-    initialPassword VARCHAR(30),
+    sub             TEXT,
+    initialPassword TEXT,
     publicKey       TEXT,
-    accessToken     VARCHAR(64),
+    accessToken     TEXT
 );
 
 CREATE INDEX authuser_username

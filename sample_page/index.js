@@ -8,8 +8,6 @@
  * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
  */
 INTERMediatorOnPage.doBeforeConstruct = () => {
-  INTERMediator.alwaysAddOperationExchange = true;
-  INTERMediatorLog.suppressDebugMessageOnPage = true;
   INTERMediatorOnPage.buttonClassCopy = "btn btn-info"
   INTERMediatorOnPage.buttonClassDelete = "btn btn-warning"
   INTERMediatorOnPage.buttonClassInsert = "btn btn-success"
