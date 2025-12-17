@@ -106,7 +106,15 @@ CREATE TABLE authuser
     hashedpasswd TEXT,
     email        TEXT,
     realname     VARCHAR(20),
-    limitdt      DateTime
+    limitdt      DateTime,
+    email           VARCHAR(100),
+    address         VARCHAR(200),
+    birthdate       CHAR(8),
+    gender          CHAR(1),
+    sub             VARCHAR(255),
+    initialPassword VARCHAR(30),
+    publicKey       TEXT,
+    accessToken     VARCHAR(64),
 );
 
 CREATE INDEX authuser_username
