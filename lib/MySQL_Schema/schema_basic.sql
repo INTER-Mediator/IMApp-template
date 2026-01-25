@@ -111,6 +111,7 @@ CREATE TABLE authuser
     sub             TEXT,
     initialPassword TEXT,
     publicKey       TEXT,
+    secret          TEXT,
     accessToken     TEXT
 );
 

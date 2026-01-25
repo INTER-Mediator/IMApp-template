@@ -108,6 +108,7 @@ CREATE TABLE authuser
     sub             TEXT,
     initialPassword TEXT,
     publicKey       TEXT,
+    secret          TEXT,
     accessToken     TEXT
 );
 GRANT ALL PRIVILEGES ON imapp.authuser TO im_db_user;
