@@ -2,12 +2,6 @@
   "name": "inter-mediator/imapp-template",
   "version": "16",
   "time": "2026-06-06",
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/INTER-Mediator/IMApp-template.git"
-    }
-  ],
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
@@ -38,29 +32,17 @@
       "The software test is very important activity for the quality assuarance."
     ],
     "clear": [
-      "rm -rf vendor",
-      "cd ./vendor/inter-mediator/inter-mediator && rm -rf node_module"
+      "INTERMediator\\Composer\\InstallerPlugin::onClear"
     ],
     "clean": [
-      "rm -rf vendor",
-      "cd ./vendor/inter-mediator/inter-mediator && rm -rf node_module"
-    ],
-    "post-update-cmd": [
-      "cd ./vendor/inter-mediator/inter-mediator; npm ci",
-      "cd ./vendor/inter-mediator/inter-mediator; npm update",
-      "./vendor/inter-mediator/inter-mediator/dist-docs/generateminifyjshere.sh",
-      "./lib/doafterupdate.sh"
-    ],
-    "post-install-cmd": [
-      "cd ./vendor/inter-mediator/inter-mediator; npm ci",
-      "./vendor/inter-mediator/inter-mediator/dist-docs/generateminifyjshere.sh",
-      "./lib/doafterinstall.sh"
+      "INTERMediator\\Composer\\InstallerPlugin::onClear"
     ]
   },
   "config": {
     "allow-plugins": {
       "simplesamlphp/composer-module-installer": true,
       "simplesamlphp/composer-xmlprovider-installer": true,
+      "inter-mediator/inter-mediator": true,
       "mouf/nodejs-installer": true
     }
   }
