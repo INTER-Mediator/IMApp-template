@@ -96,20 +96,21 @@ CREATE INDEX registeredpks_pk
 
 CREATE TABLE authuser
 (
-    id              SERIAL PRIMARY KEY,
-    username        TEXT,
-    hashedpasswd    TEXT,
-    email           TEXT,
-    realname        TEXT,
-    limitdt         TIMESTAMP,
-    address         TEXT,
-    birthdate       CHAR(8),
-    gender          CHAR(1),
-    sub             TEXT,
-    initialPassword TEXT,
-    publicKey       TEXT,
-    secret          TEXT,
-    accessToken     TEXT
+    id                    SERIAL PRIMARY KEY,
+    username              VARCHAR(64),
+    hashedpasswd          VARCHAR(72),
+    email                 VARCHAR(100),
+    realname              VARCHAR(100),
+    address               VARCHAR(200),
+    birthdate             CHAR(8),
+    gender                CHAR(1),
+    sub                   VARCHAR(255),
+    limitdt               TIMESTAMP,
+    publicKey             TEXT,
+    publicKeyCredentialId TEXT,
+    secret                TEXT,
+    accessToken           VARCHAR(64),
+    inactive              BOOLEAN
 );
 GRANT ALL PRIVILEGES ON imapp.authuser TO im_db_user;
 GRANT ALL PRIVILEGES ON imapp.authuser_id_seq TO im_db_user;
@@ -166,6 +167,23 @@ CREATE INDEX issuedhash_clienthost
     ON issuedhash (clienthost);
 CREATE INDEX issuedhash_user_id_clienthost
     ON issuedhash (user_id, clienthost);
+
+-- Collecting failed login information.
+CREATE TABLE authfail
+(
+    id       SERIAL PRIMARY KEY ,
+    dt       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ip       TEXT,
+    username TEXT,
+    tw       INT
+);
+
+CREATE INDEX authfail_dt ON authfail (dt);
+CREATE INDEX authfail_ip ON authfail (ip);
+CREATE INDEX authfail_username ON authfail (username);
+CREATE INDEX authfail_tw ON authfail (tw);
+GRANT ALL PRIVILEGES ON im_sample.authfail_id_seq TO web;
+
 
 /* Operation Log Store */
 CREATE TABLE operationlog

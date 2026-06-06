@@ -1,7 +1,7 @@
 {
   "name": "inter-mediator/imapp-template",
-  "version": "3",
-  "time": "2026-05-29",
+  "version": "16",
+  "time": "2026-06-06",
   "repositories": [
     {
       "type": "git",
@@ -12,7 +12,7 @@
   "prefer-stable": true,
   "require": {
     "php": ">=8.1.0",
-    "inter-mediator/inter-mediator": "15"
+    "inter-mediator/inter-mediator": "dev-master"
   },
   "autoload": {},
   "description": "INTER-Mediator Application Template.",
